@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Surat untuk Apipaah</title>
+  <title>Surat Rahasia untuk Apipaah 💖</title>
   <style>
     body {
       margin: 0;
       padding: 0;
-      background: url('https://pin.it/5QEFbzXhC') center center fixed;
+      background: url('https://pin.it/fammzRtcr') center center fixed;
       background-size: cover;
       font-family: 'Caveat', cursive;
       overflow-x: hidden;
@@ -29,7 +29,7 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      z-index: 999;
+      z-index: 9999;
       transition: all 0.5s ease-out;
     }
 
@@ -79,10 +79,10 @@
       max-width: 800px;
       margin: 40px auto;
       padding: 30px;
-      background: url('https://pin.it/5QEFbzXhC');
+      background: url('https://pin.it/fammzRtcr');
       background-size: cover;
       border: 15px solid transparent;
-      border-image: url('https://pin.it/5QEFbzXhC') 80 stretch;
+      border-image: url('https://pin.it/fammzRtcr') 80 stretch;
       box-shadow: 0 10px 30px rgba(0,0,0,0.3);
       position: relative;
       min-height: 500px;
@@ -175,16 +175,37 @@
       h2 { font-size: 2rem; }
       p { font-size: 1.1rem; }
     }
+
+    /* Audio Control Styling */
+    #bg-music {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      opacity: 0.7;
+      transition: opacity 0.3s;
+      z-index: 999;
+    }
+
+    #bg-music:hover {
+      opacity: 1;
+    }
   </style>
 </head>
 <body>
 
+  <!-- Audio Player (tersembunyi sampai dibuka) -->
+  <audio id="bg-music" controls loop>
+    <!-- GANTI LINK INI DENGAN LINK MP3-MU SENDIRI -->
+    <source src="https://drive.google.com/file/d/17r4SQ6G0sm5eNZqTKMt5MpGZ4Ylw8TJZ/view?usp=drivesdk" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
   <!-- Layar Kunci -->
   <div id="lock-screen">
-    <div class="lock-icon">🗝️</div>
-    <h2>Masukkan Kode Rahasia</h2>
-    <input type="text" id="code-input" placeholder="XXXXXX" maxlength="6">
-    <button id="unlock-btn">Buka Surat 💖</button>
+    <div class="lock-icon">🔐</div>
+    <h2>Masukkan Kode Akses Rahasia...</h2>
+    <input type="text" id="code-input" placeholder="••••••" maxlength="6" autocomplete="off">
+    <button id="unlock-btn">🔓 Buka Kejutan Ini</button>
   </div>
 
   <!-- Kontainer Surat -->
@@ -224,21 +245,38 @@
   <div class="star" style="top: 40%; left: 50%; animation-delay: 1s;">✨</div>
 
   <script>
-    const correctCode = "311008";
+    // === PROTEKSI PASSWORD ===
+    // Password disamarkan: "311008" dipecah & dibalik agar tidak terlihat mentah
+    function getHiddenPassword() {
+      const part1 = "800";
+      const part2 = "113";
+      return (part1 + part2).split("").reverse().join("");
+      // Hasil: "800113" -> reverse -> "311008"
+    }
+
     const lockScreen = document.getElementById("lock-screen");
     const letterContainer = document.getElementById("letter-container");
     const codeInput = document.getElementById("code-input");
     const unlockBtn = document.getElementById("unlock-btn");
+    const bgMusic = document.getElementById("bg-music");
+
+    // Sembunyikan audio dulu
+    bgMusic.style.display = "none";
 
     unlockBtn.addEventListener("click", () => {
-      if (codeInput.value === correctCode) {
+      const userCode = codeInput.value.trim();
+      const realCode = getHiddenPassword(); // Panggil fungsi password tersembunyi
+
+      if (userCode === realCode) {
         lockScreen.style.opacity = 0;
         setTimeout(() => {
           lockScreen.style.display = "none";
           letterContainer.style.display = "block";
+          bgMusic.style.display = "inline"; // Tampilkan player
+          bgMusic.play().catch(e => console.log("User belum interaksi, audio mute otomatis"));
         }, 500);
       } else {
-        alert("❌ Kode salah! Coba lagi.");
+        alert("❌ Kode salah! Coba lagi, Pi~");
         codeInput.value = "";
         codeInput.focus();
       }
@@ -262,4 +300,4 @@
   </script>
 
 </body>
-  </html>
+    </html>
