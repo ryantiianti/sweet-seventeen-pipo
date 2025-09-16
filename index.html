@@ -2,302 +2,202 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Surat Rahasia untuk Apipaah 💖</title>
+  <title>Surat untuk Apipaah</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Special+Elite&display=swap');
+
     body {
       margin: 0;
       padding: 0;
-      background: url('https://pin.it/fammzRtcr') center center fixed;
-      background-size: cover;
-      font-family: 'Caveat', cursive;
-      overflow-x: hidden;
-      color: #4a3c30;
+      background: #f7f1e3;
+      font-family: 'Special Elite', cursive;
+      overflow: hidden;
     }
 
-    @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap');
-
-    /* KUNCI */
-    #lock-screen {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(245, 240, 230, 0.95);
+    /* Halaman lock screen */
+    #lockScreen {
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      z-index: 9999;
-      transition: all 0.5s ease-out;
+      height: 100vh;
+      background: #d1ccc0;
     }
 
-    .lock-icon {
-      font-size: 5rem;
-      animation: swing 2s ease-in-out infinite;
-      margin-bottom: 20px;
+    #lockScreen h2 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.5em;
+      margin-bottom: 10px;
     }
 
-    @keyframes swing {
-      0%, 100% { transform: rotate(-5deg); }
-      50% { transform: rotate(5deg); }
-    }
-
-    #code-input {
-      font-size: 1.5rem;
-      padding: 10px;
+    #codeInput {
+      font-size: 1.5em;
+      padding: 5px 10px;
+      border: 2px solid #333;
+      border-radius: 5px;
       text-align: center;
-      border: 2px dashed #b8860b;
-      border-radius: 10px;
-      background: #fffaf0;
-      width: 200px;
-      margin-bottom: 20px;
-      font-family: inherit;
+      width: 120px;
     }
 
-    #unlock-btn {
-      padding: 12px 30px;
-      font-size: 1.2rem;
-      background: #d2691e;
-      color: white;
-      border: none;
-      border-radius: 25px;
+    #unlockBtn {
+      margin-top: 15px;
+      padding: 8px 16px;
+      font-size: 1.2em;
       cursor: pointer;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-      transition: all 0.3s;
+      border-radius: 5px;
+      border: none;
+      background: #706fd3;
+      color: white;
+      transition: 0.3s;
     }
 
-    #unlock-btn:hover {
-      background: #cd853f;
-      transform: scale(1.05);
+    #unlockBtn:hover {
+      background: #474787;
     }
 
-    /* SURAT */
-    #letter-container {
+    /* Halaman surat */
+    #letterContainer {
       display: none;
-      max-width: 800px;
-      margin: 40px auto;
-      padding: 30px;
-      background: url('https://pin.it/fammzRtcr');
-      background-size: cover;
-      border: 15px solid transparent;
-      border-image: url('https://pin.it/fammzRtcr') 80 stretch;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
       position: relative;
-      min-height: 500px;
+      height: 100vh;
+      width: 100vw;
+      background: #f7f1e3;
+      overflow: hidden;
     }
 
-    .page {
+    .paper {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 70%;
+      height: 70%;
+      background: #fcf5e5;
+      border: 2px solid #d2b48c;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+      padding: 40px;
+      font-size: 1.2em;
+      line-height: 1.6em;
       display: none;
-      animation: fadeIn 0.8s ease-in;
+      border-radius: 8px;
     }
 
-    .page.active {
+    .paper.active {
       display: block;
+      animation: fadeIn 1s;
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {opacity: 0;}
+      to {opacity: 1;}
     }
 
-    h2 {
+    .navigation {
+      position: absolute;
+      bottom: 10px;
+      width: 100%;
       text-align: center;
-      font-size: 2.5rem;
-      margin-bottom: 20px;
-      color: #8b4513;
     }
 
-    p {
-      font-size: 1.3rem;
-      line-height: 1.8;
-      text-align: justify;
-      margin-bottom: 25px;
-    }
-
-    .nav-buttons {
-      text-align: center;
-      margin-top: 30px;
-    }
-
-    .nav-btn {
-      padding: 10px 30px;
-      margin: 0 10px;
-      font-size: 1.1rem;
-      background: #8b4513;
-      color: white;
-      border: none;
-      border-radius: 25px;
+    .navBtn {
+      font-size: 2em;
+      margin: 0 20px;
       cursor: pointer;
-      transition: all 0.3s;
+      color: #706fd3;
     }
-
-    .nav-btn:hover {
-      background: #a0522d;
-      transform: translateY(-3px);
-    }
-
-    /* ANIMASI LUCU */
-    .butterfly {
+    
+    /* Elemen lucu bergerak */
+    .floating {
       position: absolute;
-      font-size: 2rem;
-      animation: fly 8s linear infinite;
-      z-index: -1;
+      animation: floatUp 10s linear infinite;
+      font-size: 1.5em;
+      opacity: 0.8;
     }
 
-    @keyframes fly {
-      0% { transform: translate(0, 0) rotate(0deg); }
-      25% { transform: translate(100px, -50px) rotate(20deg); }
-      50% { transform: translate(200px, 0) rotate(0deg); }
-      75% { transform: translate(100px, 50px) rotate(-20deg); }
-      100% { transform: translate(0, 0) rotate(0deg); }
-    }
-
-    .star {
-      position: absolute;
-      color: gold;
-      font-size: 1.5rem;
-      animation: twinkle 1.5s ease-in-out infinite;
-    }
-
-    @keyframes twinkle {
-      0%, 100% { opacity: 0.3; }
-      50% { opacity: 1; }
-    }
-
-    /* RESPONSIF */
-    @media (max-width: 768px) {
-      #letter-container {
-        margin: 20px;
-        padding: 20px;
-      }
-      h2 { font-size: 2rem; }
-      p { font-size: 1.1rem; }
-    }
-
-    /* Audio Control Styling */
-    #bg-music {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      opacity: 0.7;
-      transition: opacity 0.3s;
-      z-index: 999;
-    }
-
-    #bg-music:hover {
-      opacity: 1;
+    @keyframes floatUp {
+      from { transform: translateY(100vh); opacity: 1; }
+      to { transform: translateY(-10vh); opacity: 0; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Audio Player (tersembunyi sampai dibuka) -->
-  <audio id="bg-music" controls loop>
-    <!-- GANTI LINK INI DENGAN LINK MP3-MU SENDIRI -->
-    <source src="https://drive.google.com/file/d/17r4SQ6G0sm5eNZqTKMt5MpGZ4Ylw8TJZ/view?usp=drivesdk" type="audio/mpeg">
-    Your browser does not support the audio element.
-  </audio>
-
-  <!-- Layar Kunci -->
-  <div id="lock-screen">
-    <div class="lock-icon">🔐</div>
-    <h2>Masukkan Kode Akses Rahasia...</h2>
-    <input type="text" id="code-input" placeholder="••••••" maxlength="6" autocomplete="off">
-    <button id="unlock-btn">🔓 Buka Kejutan Ini</button>
+  <!-- Lock Screen -->
+  <div id="lockScreen">
+    <h2>🔒 Masukkan Kode Rahasia</h2>
+    <input type="password" id="codeInput" placeholder="######" maxlength="6">
+    <button id="unlockBtn">Buka</button>
   </div>
 
-  <!-- Kontainer Surat -->
-  <div id="letter-container">
+  <!-- Letter Container -->
+  <div id="letterContainer">
     <!-- Halaman 1 -->
-    <div class="page active" id="page1">
-      <h2>💌 Untuk Sahabatku Tercinta</h2>
+    <div class="paper active" id="page1">
       <p>
-        Selamat ulang tahun yang ke-17, Apipaah! 🎉<br><br>
-        Aku bersyukur banget punya sahabat sepertimu, yang selalu ada di setiap langkahku — entah itu di saat susah atau senang. Kamu nggak pernah bosan dengerin ceritaku, ngasih masukan yang bikin aku tenang, dan nemenin aku tanpa lelah. Semoga di umur baru ini, semua doa dan harapanmu bisa tercapai. Semoga kamu selalu sehat, bahagia, dan dikelilingi orang-orang yang tulus menyayangimu, sama seperti aku yang beruntung punya kamu sebagai sahabat. 💙
+      Selamat ulang tahun yang ke-17, Apipaah! 🎉<br><br>
+      Aku bersyukur banget punya sahabat sepertimu, yang selalu ada di setiap langkahku — entah itu di saat susah atau senang. Kamu nggak pernah bosan dengerin ceritaku, ngasih masukan yang bikin aku tenang, dan nemenin aku tanpa lelah. Semoga di umur baru ini, semua doa dan harapanmu bisa tercapai. Semoga kamu selalu sehat, bahagia, dan dikelilingi orang-orang yang tulus menyayangimu, sama seperti aku yang beruntung punya kamu sebagai sahabat. 💙
       </p>
-      <div class="nav-buttons">
-        <button class="nav-btn" onclick="nextPage()">➡️ Lanjut ke Lembar Kedua</button>
+      <div class="navigation">
+        <span class="navBtn" id="nextBtn">➡️</span>
       </div>
     </div>
 
     <!-- Halaman 2 -->
-    <div class="page" id="page2">
-      <h2>🚀 Keyakinanku Padamu</h2>
+    <div class="paper" id="page2">
       <p>
-        Apipaah, kamu itu sosok yang kuat, sabar, dan nggak pernah berhenti berusaha. Aku percaya banget sama kemampuanmu, apalagi menghadapi TKA dan ujian masuk universitas nanti. Jangan pernah ragu sama dirimu sendiri, karena aku tahu kamu punya potensi besar. Kamu pintar, rajin, dan selalu mau belajar — itu udah jadi bekal terbaikmu.<br><br>
-        Kalau capek, istirahat sebentar boleh, tapi jangan berhenti. Ingat, jalanmu masih panjang dan aku yakin kamu bisa tembus universitas impianmu. Aku selalu dukung kamu, Pi. Kamu hebat dan aku bangga sama kamu! 🚀💪
+      Apipaah, kamu itu sosok yang kuat, sabar, dan nggak pernah berhenti berusaha. Aku percaya banget sama kemampuanmu, apalagi menghadapi TKA dan ujian masuk universitas nanti. Jangan pernah ragu sama dirimu sendiri, karena aku tahu kamu punya potensi besar. Kamu pintar, rajin, dan selalu mau belajar — itu udah jadi bekal terbaikmu.<br><br>
+      Kalau capek, istirahat sebentar boleh, tapi jangan berhenti. Ingat, jalanmu masih panjang dan aku yakin kamu bisa tembus universitas impianmu. Aku selalu dukung kamu, Pi. Kamu hebat dan aku bangga sama kamu! 🚀💪
       </p>
-      <div class="nav-buttons">
-        <button class="nav-btn" onclick="prevPage()">⬅️ Kembali</button>
+      <div class="navigation">
+        <span class="navBtn" id="prevBtn">⬅️</span>
       </div>
     </div>
   </div>
 
-  <!-- Elemen Animasi Lucu -->
-  <div class="butterfly" style="top: 10%; left: 10%;">🦋</div>
-  <div class="butterfly" style="top: 30%; left: 80%; animation-delay: 2s;">🦋</div>
-  <div class="butterfly" style="top: 70%; left: 20%; animation-delay: 4s;">🦋</div>
-
-  <div class="star" style="top: 20%; left: 30%;">✨</div>
-  <div class="star" style="top: 60%; left: 70%; animation-delay: 0.5s;">✨</div>
-  <div class="star" style="top: 40%; left: 50%; animation-delay: 1s;">✨</div>
-
   <script>
-    // === PROTEKSI PASSWORD ===
-    // Password disamarkan: "311008" dipecah & dibalik agar tidak terlihat mentah
-    function getHiddenPassword() {
-      const part1 = "800";
-      const part2 = "113";
-      return (part1 + part2).split("").reverse().join("");
-      // Hasil: "800113" -> reverse -> "311008"
-    }
+    const unlockBtn = document.getElementById('unlockBtn');
+    const codeInput = document.getElementById('codeInput');
+    const lockScreen = document.getElementById('lockScreen');
+    const letterContainer = document.getElementById('letterContainer');
 
-    const lockScreen = document.getElementById("lock-screen");
-    const letterContainer = document.getElementById("letter-container");
-    const codeInput = document.getElementById("code-input");
-    const unlockBtn = document.getElementById("unlock-btn");
-    const bgMusic = document.getElementById("bg-music");
-
-    // Sembunyikan audio dulu
-    bgMusic.style.display = "none";
-
-    unlockBtn.addEventListener("click", () => {
-      const userCode = codeInput.value.trim();
-      const realCode = getHiddenPassword(); // Panggil fungsi password tersembunyi
-
-      if (userCode === realCode) {
-        lockScreen.style.opacity = 0;
-        setTimeout(() => {
-          lockScreen.style.display = "none";
-          letterContainer.style.display = "block";
-          bgMusic.style.display = "inline"; // Tampilkan player
-          bgMusic.play().catch(e => console.log("User belum interaksi, audio mute otomatis"));
-        }, 500);
+    unlockBtn.addEventListener('click', () => {
+      if(codeInput.value === "311008"){
+        lockScreen.style.display = "none";
+        letterContainer.style.display = "block";
+        spawnFloatingSymbols();
       } else {
-        alert("❌ Kode salah! Coba lagi, Pi~");
-        codeInput.value = "";
-        codeInput.focus();
+        alert("Kode salah, coba lagi 😉");
       }
     });
 
-    codeInput.addEventListener("keypress", (e) => {
-      if (e.key === "Enter") {
-        unlockBtn.click();
-      }
+    // Navigasi
+    const page1 = document.getElementById('page1');
+    const page2 = document.getElementById('page2');
+    const nextBtn = document.getElementById('nextBtn');
+    const prevBtn = document.getElementById('prevBtn');
+
+    nextBtn.addEventListener('click', () => {
+      page1.classList.remove('active');
+      page2.classList.add('active');
     });
 
-    function nextPage() {
-      document.getElementById("page1").classList.remove("active");
-      document.getElementById("page2").classList.add("active");
-    }
+    prevBtn.addEventListener('click', () => {
+      page2.classList.remove('active');
+      page1.classList.add('active');
+    });
 
-    function prevPage() {
-      document.getElementById("page2").classList.remove("active");
-      document.getElementById("page1").classList.add("active");
+    // Buat elemen lucu bergerak (hati & bintang)
+    function spawnFloatingSymbols(){
+      const symbols = ["💙","✨","🌸","💌","🎶"];
+      setInterval(()=>{
+        const el = document.createElement("div");
+        el.className="floating";
+        el.innerText = symbols[Math.floor(Math.random()*symbols.length)];
+        el.style.left = Math.random()*100+"vw";
+        el.style.animationDuration = (5+Math.random()*5)+"s";
+        document.body.appendChild(el);
+        setTimeout(()=>{el.remove();},10000);
+      },1500);
     }
   </script>
-
 </body>
-    </html>
+</html>
